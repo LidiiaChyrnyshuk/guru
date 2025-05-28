@@ -1,0 +1,85 @@
+@media screen and (max-width: 767px) {
+	.hero-accent {
+		position: relative;
+		width: 100vw;
+		height: auto;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.hero-accent {
+		position: absolute;
+		bottom: 0;
+		right: -60px;
+		width: 460px;
+		transition: transform 0.2s;
+	}
+}
+@media screen and (min-width: 900px) {
+	.hero-accent {
+		position: absolute;
+		bottom: 0;
+		right:0;
+		width: 466px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.hero-accent {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 500px;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.hero-accent {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		transform: translateX(-10%);
+		width: 623px;
+	}
+}
+
+@media screen and (min-width: 1400px) {
+	.hero-accent {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		transform: translateX(-20%);
+		width: 623px;
+	}
+}
+
+@media screen and (min-width: 1512px) {
+	.hero-accent {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		transform: translateX(-40%);
+		width: 623px;
+	}
+}
+
+.img-mob {
+	position: relative;
+	z-index: 4;
+}
+
+@media screen and (min-width: 768px) {
+	.img-mob {
+		display: none;
+	}
+}
+
+.img-desk {
+	display: none;
+}
+
+@media screen and (min-width: 768px) {
+	.img-desk {
+		display: block;
+	}
+}

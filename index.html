@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link type="image/x-icon" rel="shortcut icon" href="./logo.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WEISS</title>
+		<link rel="stylesheet" href="./css/normalize.css" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+		/>
+
+		<script>
+			(function () {
+				const supported = ["ru", "en", "hu", "cs", "pt"];
+				let lang = navigator.language.split("-")[0].toLowerCase();
+				if (!supported.includes(lang)) lang = "en";
+
+				const script = document.createElement("script");
+				script.src = `https://www.google.com/recaptcha/api.js?hl=${lang}`;
+				script.async = true;
+				script.defer = true;
+				document.head.appendChild(script);
+			})();
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="accent2">
+				<img src="./images/hero/ellipse300.webp" alt="Decorative circle" />
+			</div>
+			<div class="accent3">
+				<img src="./images/hero/ellipse301.webp" alt="Decorative circle" />
+			</div>
+			<div class="accent4">
+				<img src="./images/hero/ellipse302.webp" alt="Decorative circle" />
+			</div>
+			<section class="hero">
+				<div class="header">
+					<div class="header-logo">
+						<img src="./images/header/WS.svg" alt="logo" />
+					</div>
+					<div class="language-selector">
+						<button id="lang-btn">
+							<img
+								src="./images/header/language.svg"
+								alt="Globe"
+								class="icon language"
+							/>
+							<span class="current-lang" id="current-lang">EN</span>
+							<img
+								src="./images/header/arrow_drop_down.svg"
+								alt="Arrow"
+								class="icon arrow"
+							/>
+						</button>
+						<ul id="lang-dropdown" class="hidden">
+							<li data-lang="EN">EN</li>
+							<li data-lang="HU">HU</li>
+							<li data-lang="PT">PT</li>
+							<li data-lang="RU">RU</li>
+							<li data-lang="CZ">CZ</li>
+							<li data-lang="CA">CA</li>
+						</ul>
+					</div>
+				</div>
+				<div class="hero-text">
+					<h1 class="title" data-translate="title">welcome BONUS</h1>
+					<h2 class="promowrap">
+						<span class="promoCurrency" data-translate="percent">350%</span>
+						<span class="promoSubtext" data-translate="promoSubtext">up to</span
+						><br />
+						<span class="promoCurrency" data-translate="promoCurrency">
+							7000 USDT</span
+						>
+					</h2>
+					<div class="bonus-wrap">
+						<p class="bonus" data-translate="bonus">+50 Free spins</p>
+					</div>
+					<p class="deposit" data-translate="deposit">without deposit</p>
+				</div>
+				<div class="hero-accent">
+					<img class="img-mob" src="./images/hero/girl_mob.webp" alt="girl" />
+					<img class="img-desk" src="./images/hero/girl_desk.webp" alt="girl" />
+				</div>
+				<button
+					class="button button-prime"
+					type="button"
+					data-translate="btnRegistration"
+					data-modal-open
+				>
+					Registration
+				</button>
+			</section>
+			<section class="loyalty">
+				<!-- Slider main container -->
+				<div class="swiper swiper-1">
+					<!-- Additional required wrapper -->
+					<div class="swiper-wrapper">
+						<!-- Slides -->
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods1.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods2.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods3.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods4.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods5.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods6.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods7.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods8.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods9.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods10.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods11.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods12.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods13.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods14.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods15.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods16.svg"
+								alt="payment"
+							/>
+						</div>
+						<div class="swiper-slide">
+							<img
+								class="loyalty-slide"
+								src="./images/payments/payment_methods17.svg"
+								alt="payment"
+							/>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="benefits">
+				<h3 class="titleBenefits" data-translate="titleBenefits">
+					Best for Casino Guru players
+				</h3>
+				<ul class="benefits-list">
+					<li>
+						<div class="award benefits-item">
+							<p class="benefits-info" data-translate="benefitsTop">TOP 10</p>
+							<div>
+								<p class="info-description" data-translate="benefitsBest">
+									Вest Сasino
+								</p>
+								<span class="info-resalt" data-translate="benefitsYear"
+									>2024</span
+								>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="rank benefits-item">
+							<p class="benefits-info">8.7</p>
+							<div>
+								<p class="info-description" data-translate="casinoRank">
+									Casino Rank
+								</p>
+								<span class="info-resalt" data-translate="great">Great</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="rating benefits-item">
+							<p class="benefits-info">9.6</p>
+							<div>
+								<p class="info-description" data-translate="playerRating">
+									Player Rating
+								</p>
+								<span class="info-resalt" data-translate="reviews"
+									>817 reviews</span
+								>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="games">
+				<h3 class="games-title" data-translate="gamesTitel">
+					Over 8000+ games
+				</h3>
+				<div class="games-mob">
+					<div class="video-wrapper">
+						<video class="video" autoplay muted loop playsinline>
+							<source src="./video/zeus.mp4" type="video/mp4" />
+						</video>
+					</div>
+					<!-- Slider main container -->
+					<div class="swiper swiper-3">
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper">
+							<!-- Slides -->
+							<div class="swiper-slide games-slide">
+								<img
+									class="slide-img"
+									src="./images/games/сard_game1.webp"
+									alt="game"
+								/>
+								<img src="./images/games/сard_game4.webp" alt="game" />
+							</div>
+							<div class="swiper-slide games-slide">
+								<img
+									class="slide-img"
+									src="./images/games/сard_game2.webp"
+									alt="game"
+								/>
+								<img src="./images/games/сard_game5.webp" alt="game" />
+							</div>
+							<div class="swiper-slide games-slide">
+								<img
+									class="slide-img"
+									src="./images/games/сard_game3.webp"
+									alt="game"
+								/>
+								<img src="./images/games/сard_game6.webp" alt="game" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="games-tab">
+					<ul class="games-row1">
+						<li>
+							<div class="item-wrap">
+								<video class="item1" autoplay muted loop playsinline>
+									<source src="./video/zeus.mp4" type="video/mp4" />
+								</video>
+							</div>
+						</li>
+						<li class="item2"><img src="./images/games/2.webp" alt="game" /></li>
+						<li class="item2"><img src="./images/games/3.webp" alt="game" /></li>
+						<li class="item2"><img src="./images/games/4.webp" alt="game" /></li>
+					</ul>
+					<ul class="games-row2">
+						<li class="item3"><img src="./images/games/5.webp" alt="game" /></li>
+						<li class="item3"><img src="./images/games/6.webp" alt="game" /></li>
+						<li class="item3"><img src="./images/games/7.webp" alt="game" /></li>
+						<li class="item3"><img src="./images/games/8.webp" alt="game" /></li>
+						<li class="item3"><img src="./images/games/9.webp" alt="game" /></li>
+						<li class="item3">
+							<img src="./images/games/10.webp" alt="game" />
+						</li>
+						<li class="item3">
+							<img src="./images/games/11.webp" alt="game" />
+						</li>
+					</ul>
+				</div>
+
+					<!-- Slider main container -->
+					<div class="swiper swiper-4">
+						<!-- Additional required wrapper -->
+						<div class="swiper-wrapper">
+							<!-- Slides -->
+							<div class="swiper-slide slide-4">
+								<img
+									class="swiper-4-img"
+									src="./images/provider/1.svg"
+									alt="provider"
+								/>
+							</div>
+							<div class="swiper-slide slide-4">
+								<img
+									class="swiper-4-img"
+									src="./images/provider/2.svg"
+									alt="provider"
+								/>
+							</div>
+							<div class="swiper-slide slide-4">
+								<img
+									class="swiper-4-img"
+									src="./images/provider/3.svg"
+									alt="provider"
+								/>
+							</div>
+							<div class="swiper-slide slide-4">
+								<img
+									class="swiper-4-img"
+									src="./images/provider/4.svg"
+									alt="provider"
+								/>
+							</div>
+							<div class="swiper-slide slide-4">
+								<img
+									class="swiper-4-img"
+									src="./images/provider/5.svg"
+									alt="provider"
+								/>
+							</div>
+							<div class="swiper-slide slide-4">
+								<img
+									class="swiper-4-img"
+									src="./images/provider/6.svg"
+									alt="provider"
+								/>
+							</div>
+						</div>
+					</div>
+
+				<div class="btn-wrap">
+					<button
+						class="button btn-play button-prime"
+						type="button"
+						data-translate="btnPlay"
+						data-modal-open
+					>
+						Play
+					</button>
+				</div>
+			</section>
+			<!--MODAL WINDOW-->
+			<div class="backdrop is-hidden" data-modal>
+				<form class="modal" id="registrationForm">
+					<div class="modal-header">
+						<div class="accent5">
+							<img
+								src="./images/hero/ellipse500.webp"
+								alt="Decorative circle"
+							/>
+						</div>
+						<div class="header-modal">
+							<img class="modal-logo" src="./images/header/WS.svg" alt="logo" />
+							<button class="modal-close" type="button" data-modal-close>
+								<img
+									class="icon-close"
+									src="./images/form/close.svg"
+									alt="close"
+									width="14"
+									height="14"
+								/>
+							</button>
+						</div>
+
+						<div>
+							<h2 class="modal-promowrap">
+								<span class="modal-promoCurrency" data-translate="modalPercent"
+									>350%</span
+								>
+								<span
+									class="modal-promoSubtext"
+									data-translate="modalPromoSubtext"
+									>up to</span
+								><br />
+								<span
+									class="modal-promoCurrency"
+									data-translate="modalPromoCurrency"
+								>
+									7000 USDT</span
+								>
+							</h2>
+							<div class="modal-bonus-wrap">
+								<p class="modal-bonus" data-translate="modalBonus">
+									+50 Free spins
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-content">
+						<label class="modal-label">
+							Email*
+							<input
+								class="modal-input"
+								type="email"
+								name="email"
+								placeholder="user@gmail.com"
+								value=""
+								required
+							/>
+							<img
+								class="input-icon modal-icon"
+								src="./images/form/email.svg"
+								alt="Letter icon"
+								width="24"
+								height="24"
+							/>
+						</label>
+						<label class="modal-label">
+							Password*
+							<input
+								class="modal-input"
+								type="password"
+								name="password"
+								placeholder="Qwerty123"
+								value=""
+								required
+							/>
+							<img
+								class="input-icon modal-icon"
+								src="./images/form/lock.svg"
+								alt="Lock icon"
+								width="24"
+								height="24"
+							/>
+						</label>
+						<label class="modal-check modal-label">
+							<input
+								class="modal-checkbox"
+								type="checkbox"
+								name="terms"
+								required
+							/>
+							<span>
+								<span data-translate="checkbox"
+									>Ставя галочку в этом поле для регистрации на сайте,
+									пользователь подтверждает, что ему больше 18 лет, и что он
+									прочитал, понял и принял</span
+								>
+								<a
+									href="https://weiss.bet/terms-and-conditions"
+									data-translate="terms"
+									>Условия и положения</a
+								>.
+							</span>
+						</label>
+						<div class="captcha-wrapper" id="captcha-container">
+							<div
+								class="g-recaptcha"
+								data-sitekey="6Le4MEErAAAAAOlgeBEYvuReVWXDC1nQ4Rnm_qKp"
+								data-callback="onCaptchaCompleted"
+							></div>
+						</div>
+					</div>
+					<div class="modal-btn">
+						<button
+							class="button modal-button"
+							type="submit"
+							data-translate="modalBtn"
+						>
+							Cоздать акаунт
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+			defer
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"
+			defer
+		></script>
+		<script src="./js/language.js" defer></script>
+		<script src="./js/modal.js" defer></script>
+		<script src="./js/slider.js" defer></script>
+	</body>
+</html>

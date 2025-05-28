@@ -1,0 +1,122 @@
+.hero-text {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 20;
+}
+
+@media screen and (min-width: 768px) {
+	.hero-text {
+		align-items: start;
+		justify-content: flex-start;
+		margin-bottom: 40px;
+	}
+}
+
+.title {
+	font-weight: 400;
+	font-size: clamp(16px, 5vw, 24px);
+	line-height: 1.25;
+	text-transform: uppercase;
+	color: #84fff7;
+	margin-bottom: 8px;
+}
+
+.promowrap {
+	margin-bottom: 24px;
+}
+
+.promoCurrency {
+	font-weight: 700;
+	font-size: clamp(28px, 7vw, 64px);
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.promoSubtext {
+	font-weight: 200;
+	font-size: clamp(28px, 7vw, 64px);
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.bonus-wrap {
+	width: 289px;
+	height: 62px;
+	border-radius: 20px;
+	border: 3px solid #defffd;
+
+	margin-bottom: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 12px;
+	padding-right: 16px;
+	padding-bottom: 12px;
+	padding-left: 16px;
+	box-shadow: 0px 0px 24px 0px #defffd40;
+	background: #2cfff114;
+	backdrop-filter: blur(16px);
+}
+
+@media screen and (min-width: 768px) {
+	.bonus-wrap {
+		width: 434px;
+		height: 90px;
+		border-radius: 28px;
+		margin-bottom: 16px;
+	}
+}
+
+.bonus {
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 100%;
+	text-transform: uppercase;
+	color: #84fff7;
+}
+
+@media screen and (min-width: 768px) {
+	.bonus {
+		font-size: 46px;
+	}
+}
+
+.deposit {
+	font-weight: 400;
+	font-size: clamp(16px, 4vw, 24px);
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.lang-HU [data-translate="percent"],
+.lang-HU [data-translate="promoSubtext"],
+.lang-HU [data-translate="promoCurrency"] {
+	font-size: clamp(28px, 5vw, 46px);
+}
+
+.lang-HU [data-translate="bonus"],
+.lang-PT [data-translate="bonus"],
+.lang-CZ [data-translate="bonus"] {
+	font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+	.lang-HU [data-translate="bonus"],
+	.lang-PT [data-translate="bonus"],
+	.lang-CZ [data-translate="bonus"] {
+		font-size: 28px;
+	}
+}
+
+.lang-RU [data-translate="bonus"] {
+	font-size: 26px;
+}
+
+@media screen and (min-width: 768px) {
+	.lang-RU [data-translate="bonus"] {
+		font-size: 40px;
+	}
+}
