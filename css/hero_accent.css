@@ -10,7 +10,8 @@
 	.hero-accent {
 		position: absolute;
 		bottom: 0;
-		right: -40px;
+		right: 0;
+		transform: translateX(-5%);
 		width: 460px;
 		transition: transform 0.2s;
 	}
@@ -29,6 +30,7 @@
 		position: absolute;
 		bottom: 0;
 		right: 0;
+		transform: translateX(2%);
 		width: 500px;
 	}
 }

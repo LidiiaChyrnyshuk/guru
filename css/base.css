@@ -1,4 +1,5 @@
 html {
+	width: 100vw;
 	scroll-behavior: smooth;
 	height: auto;
 	min-height: 100%;
@@ -14,17 +15,20 @@ body {
 	height: auto;
 	min-height: 100dvh;
 	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .container {
 	position: relative;
 	width: 100%;
+	max-width: 1512px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-left: auto;
-	margin-right: auto;
 	overflow: hidden;
 	z-index: 10;
 }

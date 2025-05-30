@@ -13,6 +13,7 @@
 	background-repeat: no-repeat, no-repeat;
 	background-size:contain, 595px 595px;
 	background-position:center, 0 280px;
+	overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
