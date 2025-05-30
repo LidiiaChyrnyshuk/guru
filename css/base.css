@@ -1,9 +1,10 @@
 html {
-	width: 100vw;
 	scroll-behavior: smooth;
+	width: 100%;
 	height: auto;
 	min-height: 100%;
 	font-size: 16px;
+
 }
 
 body {
@@ -11,7 +12,7 @@ body {
 	color: var(--color-text);
 	background: var(--color-bg);
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	height: auto;
 	min-height: 100dvh;
 	overflow-x: hidden;
@@ -31,6 +32,7 @@ body {
 	justify-content: center;
 	overflow: hidden;
 	z-index: 10;
+	margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
