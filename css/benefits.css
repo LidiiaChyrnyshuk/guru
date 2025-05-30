@@ -146,8 +146,8 @@
 		flex-direction: column;
 		align-items: start;
 		justify-content: flex-start;
-		gap: 1.98vw;
-		padding-top: 1.65vw;
+		gap: 1.32vw;
+		padding-top: 1.9vw;
 		padding-right: 3.3vw;
 		padding-bottom: 2.64vw;
 		padding-left: 1.65vw;
@@ -158,7 +158,7 @@
 	.benefits-item {
 		width: 399px;
 		height: 265px;
-		gap: 30px;
+		gap: 20px;
 	}
 }
 
