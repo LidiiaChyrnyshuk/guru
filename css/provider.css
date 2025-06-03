@@ -1,6 +1,7 @@
 .provider {
   position: relative;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .provider .swiper {
