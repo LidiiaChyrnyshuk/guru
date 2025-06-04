@@ -1,4 +1,4 @@
-const swiper1 = new Swiper(".swiper-1", {
+/* const swiper1 = new Swiper(".swiper-1", {
 	speed: 1000,
 	loop: true,
 	spaceBetween: 10,
@@ -21,7 +21,7 @@ const swiper1 = new Swiper(".swiper-1", {
 			spaceBetween: 20,
 		},
 	},
-});
+}); */
 
 const swiper2 = new Swiper(".swiper-2", {
 	speed: 1000,
