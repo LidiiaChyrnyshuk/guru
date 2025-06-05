@@ -20,9 +20,6 @@
 	}
 }
 
-
-
-
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 	.hero {
 		position: relative;
@@ -33,11 +30,6 @@
 		padding-right: 24px;
 		padding-bottom: 48px;
 		background: transparent;
-/* 		background: url(../images/hero/ellipse500.webp),
-			url(../images/hero/pattern.webp);
-		background-repeat: no-repeat, no-repeat;
-		background-size: cover, contain;
-		background-position: 20px 0, 300px 0; */
 		z-index: 3;
 		display: flex;
 		flex-direction: column;
@@ -55,11 +47,6 @@
 		padding-top: 60px;
 		padding-right: 156px;
 		padding-bottom: 60px;
-/* 		background: url(../images/hero/ellipse500.webp),
-			url(../images/hero/pattern.webp);
-		background-repeat: no-repeat, no-repeat;
-		background-size: cover, contain;
-		background-position: center, 400px 0; */
 		z-index: 3;
 		display: flex;
 		flex-direction: column;
@@ -68,12 +55,4 @@
 	}
 }
 
-/* @media screen and (min-width: 1512px) {
-.hero {
-	background: url(../images/hero/ellipse500.webp),
-	url(../images/hero/pattern.webp);
-background-repeat: no-repeat, no-repeat;
-background-size: cover, contain;
-background-position: 0 0, 490px 0;
-}
-} */
+
