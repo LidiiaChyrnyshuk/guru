@@ -86,24 +86,9 @@ body {
 		max-width: 1020px;
 	}
 }
-/* @media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
 	.container {
 		max-width: 1512px;
 	}
-} */
+}
 
-/* 	body::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 60%;
-		height: 567px;
-
-		background-image: url(../images/hero/pattern.webp);
-		background-repeat: no-repeat;
-		background-size: 100% auto;
-		background-position: top right;
-		pointer-events: none;
-		z-index: 1;
-	} */

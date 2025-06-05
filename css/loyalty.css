@@ -1,6 +1,6 @@
 .loyalty {
 	width: 100%;
-  max-width: 1512px;
+	max-width: 1512px;
 	position: relative;
 	padding-top: 32px;
 	padding-right: 24px;
@@ -8,7 +8,7 @@
 	padding-left: 24px;
 	pointer-events: none;
 	overflow: hidden;
-  margin: 0 auto
+	margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -30,32 +30,44 @@
 }
 
 .infinite-slider {
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+	width: 100%;
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent 0%,
+		black 10%,
+		black 90%,
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent 0%,
+		black 10%,
+		black 90%,
+		transparent 100%
+	);
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
 }
 
 .infinite-track {
-  display: flex;
-  gap: 24px;
-  animation: scroll-left-mobile 8s linear infinite;
-  backface-visibility: hidden;
-	transform: translate3d(0, 0, 0);
+	display: flex;
+	gap: 24px;
+	width: max-content;
+	will-change: transform;
+	backface-visibility: hidden;
 }
 
 .slide {
-  flex: 0 0 64px;
-  height: 64px;
-  background: #eee;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	flex: 0 0 64px;
+	height: 64px;
+	background: #eee;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .loyalty-slide {
@@ -63,46 +75,4 @@
 	height: 64px;
 }
 
-/* Mobile */
-@keyframes scroll-left-mobile {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-1 * ((64px + 24px) * 17)));
-  }
-}
 
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .infinite-track {
-    gap: 32px;
-    animation: scroll-left-tablet 8s linear infinite;
-  }
-
-  @keyframes scroll-left-tablet {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-1 * ((64px + 32px) * 17)));
-    }
-  }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .infinite-track {
-    gap: 40px;
-    animation: scroll-left-desktop 8s linear infinite;
-  }
-
-  @keyframes scroll-left-desktop {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-1 * ((64px + 40px) * 17)));
-    }
-  }
-}
