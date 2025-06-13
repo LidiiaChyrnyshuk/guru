@@ -23,7 +23,7 @@ export const getApiConfiguration = async () => {
   );
 	const config = await response.json();
 
-	console.log("🛠 Отримана конфігурація:", config); // Тепер config визначена
+	
 	return config;
 };
 

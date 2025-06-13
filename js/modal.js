@@ -1,4 +1,4 @@
-// modal.js (переписаний з використанням глобальних параметрів)
+
 import {
 	getGlobalParams,
 	sendRegistration,
@@ -95,14 +95,14 @@ function onTouchMove(e) {
 
 function renderCaptcha(siteKey) {
 	if (!window.grecaptcha) {
-		console.error("reCAPTCHA script not loaded");
+		notyf.error("reCAPTCHA script not loaded");
 		return;
 	}
 
 
 	const container = document.getElementById("captcha-container");
 	if (!container) {
-		console.error("Captcha container not found");
+		notyf.error("Captcha container not found");
 		return;
 	}
 	container.innerHTML = "";
@@ -175,7 +175,7 @@ async function initCaptcha() {
 	const lang = (navigator.language.split("-")[0] || "en").toLowerCase();
 
 	try {
-		// Припустимо, getApiConfiguration повертає об'єкт з полем siteKey
+	
 		const config = await getApiConfiguration();
 		const siteKey = config?.siteKey;
 		if (!siteKey) throw new Error("Sitekey not found");
@@ -183,8 +183,8 @@ async function initCaptcha() {
 		await loadRecaptchaScript(lang);
 		renderCaptcha(siteKey);
 	} catch (error) {
-		console.error("Captcha init error:", error);
-		// Тут можна показати повідомлення користувачу через Notyf або інше
+		notyf.error("Captcha init error:", error);
+		
 	}
 }
 
@@ -199,7 +199,7 @@ async function submitForm(e) {
 		?.value.trim();
 
 	if (!email || !password || !captcha) {
-		notyf.error("Будь ласка, заповніть усі поля і пройдіть капчу.");
+		notyf.error("Please fill in all fields and pass the captcha.");
 		return;
 	}
 
@@ -208,9 +208,9 @@ async function submitForm(e) {
 		redirectToAuth(token);
 	} catch (errors) {
 		if (Array.isArray(errors)) {
-			notyf.error(errors?.[0] || "Помилка реєстрації.");
+			notyf.error(errors?.[0] || "Registration error.");
 		} else {
-			notyf.error("Щось пішло не так.");
+			notyf.error("Something went wrong.");
 		}
 	}
 }
