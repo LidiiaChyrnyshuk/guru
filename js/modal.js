@@ -1,92 +1,27 @@
+// modal.js (переписаний з використанням глобальних параметрів)
+import {
+	getGlobalParams,
+	sendRegistration,
+	redirectToAuth,
+	getApiConfiguration,
+	DOMAIN_NOT_DEFINED,
+	UNDEFINED_ERROR,
+} from "./global-params-utils";
+
 let notyf;
 
-document.addEventListener("DOMContentLoaded", () => {
-	// Ініціалізація Notyf
-	notyf = new Notyf({
-		duration: 2000,
-		position: {
-			x: "center",
-			y: "top",
-		},
-	});
-});
-
-const refsModal = {
-	openModalBtns: document.querySelectorAll("[data-modal-open]"),
-	closeModalBtn: document.querySelector("[data-modal-close]"),
+const refs = {
+	openBtns: document.querySelectorAll("[data-modal-open]"),
+	closeBtn: document.querySelector("[data-modal-close]"),
 	backdrop: document.querySelector("[data-modal]"),
 	form: document.getElementById("registrationForm"),
-	emailInput: document.querySelector("input[name='email']"),
-	passwordInput: document.querySelector("input[name='password']"),
+	email: document.querySelector("input[name='email']"),
+	password: document.querySelector("input[name='password']"),
 	checkbox: document.querySelector("input[name='terms']"),
-	submitBtn: document.querySelector(".modal button[type='submit']"),
+	submitBtn: document.querySelector("form button[type='submit']"),
 };
 
-let startY;
-
-refsModal.openModalBtns.forEach((btn) =>
-	btn.addEventListener("click", handleOpenModal)
-);
-
-refsModal.closeModalBtn.addEventListener("click", handleCloseModal);
-refsModal.emailInput.addEventListener("input", validateForm);
-refsModal.passwordInput.addEventListener("input", validateForm);
-refsModal.checkbox.addEventListener("change", validateForm);
-refsModal.form.addEventListener("touchstart", handleTouchStart);
-refsModal.form.addEventListener("touchmove", handleTouchMove);
-refsModal.form.addEventListener("submit", submitRegistration);
-
-window.addEventListener("popstate", handleBackButton);
-
-disableButton();
-
-function handleOpenModal() {
-	refsModal.backdrop.classList.remove("is-hidden");
-	refsModal.closeModalBtn.addEventListener("click", handleCloseModal);
-	document.addEventListener("keydown", handleEscCloseModal);
-	document.addEventListener("click", handleEscCloseModal);
-	document.body.style.overflow = "hidden";
-	window.history.pushState({ modalOpen: true }, "");
-}
-
-function handleCloseModal() {
-	document.body.style.overflow = "";
-	refsModal.backdrop.classList.add("is-hidden");
-	refsModal.closeModalBtn.addEventListener("click", handleCloseModal);
-	document.removeEventListener("keydown", handleEscCloseModal);
-	document.removeEventListener("click", handleEscCloseModal);
-	clearForm();
-
-	if (window.history.state && window.history.state.modalOpen) {
-		window.history.back();
-	}
-}
-
-function handleEscCloseModal(event) {
-	if (
-		event.target === refsModal.backdrop ||
-		(event.type === "keydown" && event.key === "Escape")
-	) {
-		handleCloseModal();
-	}
-}
-
-function handleTouchStart(event) {
-	startY = event.touches[0].clientY;
-}
-
-function handleTouchMove(event) {
-	let deltaY = event.touches[0].clientY - startY;
-	if (deltaY > 100) {
-		handleCloseModal();
-	}
-}
-
-function handleBackButton() {
-	if (!refsModal.backdrop.classList.contains("is-hidden")) {
-		handleCloseModal();
-	}
-}
+let startY = 0;
 
 function validateEmail(email) {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -94,132 +29,211 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-	const hasMinLength = password.length >= 6;
-	const hasDigit = /\d/.test(password);
-	const hasUppercase = /[A-Z]/.test(password);
-	return hasMinLength && hasDigit && hasUppercase;
+	return password.length >= 6 && /\d/.test(password) && /[A-Z]/.test(password);
 }
 
-function validateField(input, validationFn) {
-	const isValid = validationFn(input.value.trim());
-	if (input.value.trim() === "") {
-		input.classList.remove("valid", "invalid");
-	} else {
-		input.classList.toggle("valid", isValid);
-		input.classList.toggle("invalid", !isValid);
-	}
-	return isValid;
+function validateField(input, validator) {
+	const value = input.value.trim();
+	const valid = validator(value);
+	input.classList.toggle("valid", valid);
+	input.classList.toggle("invalid", !valid);
+	return valid;
 }
 
 function validateForm() {
-	const emailValid = validateField(refsModal.emailInput, validateEmail);
-	const passwordValid = validateField(
-		refsModal.passwordInput,
-		validatePassword
-	);
-	const isChecked = refsModal.checkbox.checked;
+	const emailValid = validateField(refs.email, validateEmail);
+	const passValid = validateField(refs.password, validatePassword);
+	const isChecked = refs.checkbox.checked;
+	const captchaValue = document
+		.querySelector("textarea[name='g-recaptcha-response']")
+		?.value.trim();
+	const captchaValid = captchaValue?.length > 0;
 
-	// Замість перевірки токена:
-	const captchaResponse = document.querySelector(
-		"textarea[name='g-recaptcha-response']"
+	refs.submitBtn.disabled = !(
+		emailValid &&
+		passValid &&
+		isChecked &&
+		captchaValid
 	);
-	const captchaReady = captchaResponse && captchaResponse.value.trim() !== "";
-
-	if (emailValid && passwordValid && isChecked && captchaReady) {
-		enableButton();
-	} else {
-		disableButton();
-	}
 }
 
 function clearForm() {
-	refsModal.emailInput.value = "";
-	refsModal.passwordInput.value = "";
-	refsModal.emailInput.classList.remove("valid", "invalid");
-	refsModal.passwordInput.classList.remove("valid", "invalid");
-	refsModal.checkbox.checked = false;
-	if (window.grecaptcha) {
-		grecaptcha.reset(); // Скидає капчу v2
-	}
-	disableButton();
+	refs.email.value = "";
+	refs.password.value = "";
+	refs.checkbox.checked = false;
+	refs.email.classList.remove("valid", "invalid");
+	refs.password.classList.remove("valid", "invalid");
+	refs.submitBtn.disabled = true;
+	if (window.grecaptcha) grecaptcha.reset();
 }
 
-function disableButton() {
-	refsModal.submitBtn.disabled = true;
-	refsModal.submitBtn.style.cursor = "not-allowed";
-	refsModal.submitBtn.style.opacity = "0.6";
+function openModal() {
+	refs.backdrop.classList.remove("is-hidden");
+	document.body.style.overflow = "hidden";
+	window.history.pushState({ modalOpen: true }, "");
 }
 
-function enableButton() {
-	refsModal.submitBtn.disabled = false;
-	refsModal.submitBtn.style.cursor = "pointer";
-	refsModal.submitBtn.style.opacity = "1";
+function closeModal() {
+	refs.backdrop.classList.add("is-hidden");
+	document.body.style.overflow = "";
+	clearForm();
+	if (window.history.state?.modalOpen) window.history.back();
 }
 
-async function submitRegistration(event) {
-	event.preventDefault();
-	if (refsModal.submitBtn.disabled) return;
+function handleEscClose(event) {
+	if (event.key === "Escape" || event.target === refs.backdrop) closeModal();
+}
 
-	const email = refsModal.emailInput.value.trim();
-	const password = refsModal.passwordInput.value.trim();
-	const captchaResponseEl = document.querySelector(
-		"textarea[name='g-recaptcha-response']"
-	);
-	const captchaResponse = captchaResponseEl
-		? captchaResponseEl.value.trim()
-		: "";
+function onTouchStart(e) {
+	startY = e.touches[0].clientY;
+}
 
-	if (!email || !password || !captchaResponse) {
-		notyf.error("Please fill in all fields and pass the captcha.");
+function onTouchMove(e) {
+	const delta = e.touches[0].clientY - startY;
+	if (delta > 100) closeModal();
+}
+
+function renderCaptcha(siteKey) {
+	if (!window.grecaptcha) {
+		console.error("reCAPTCHA script not loaded");
 		return;
 	}
 
-	const data = {
-		email,
-		password,
-		language: "ru",
-		partnerId: null,
-		trackId: null,
-		param1: null,
-		param2: null,
-		param3: null,
-		param4: null,
-		captchaResponse,
-	};
+
+	const container = document.getElementById("captcha-container");
+	if (!container) {
+		console.error("Captcha container not found");
+		return;
+	}
+	container.innerHTML = "";
+
+	
+	window.grecaptcha.render(container, {
+		sitekey: siteKey,
+		theme: "light",
+		size: "normal",
+	});
+}
+
+function loadRecaptchaScript(lang = "en") {
+	return new Promise((resolve, reject) => {
+		if (window.grecaptcha && typeof window.grecaptcha.render === "function") {
+			resolve();
+			return;
+		}
+
+		if (document.querySelector('script[src*="google.com/recaptcha/api.js"]')) {
+	
+			const interval = setInterval(() => {
+				if (
+					window.grecaptcha &&
+					typeof window.grecaptcha.render === "function"
+				) {
+					clearInterval(interval);
+					resolve();
+				}
+			}, 100);
+
+		
+			setTimeout(() => {
+				clearInterval(interval);
+				reject(new Error("Timeout waiting for grecaptcha"));
+			}, 10000);
+
+			return;
+		}
+
+		const script = document.createElement("script");
+		script.src = `https://www.google.com/recaptcha/api.js?hl=${lang}`;
+		script.async = true;
+		script.defer = true;
+		script.onload = () => {
+		
+			const interval = setInterval(() => {
+				if (
+					window.grecaptcha &&
+					typeof window.grecaptcha.render === "function"
+				) {
+					clearInterval(interval);
+					resolve();
+				}
+			}, 100);
+
+			
+			setTimeout(() => {
+				clearInterval(interval);
+				reject(new Error("Timeout waiting for grecaptcha"));
+			}, 10000);
+		};
+		script.onerror = () => reject(new Error("Failed to load reCAPTCHA script"));
+
+		document.head.appendChild(script);
+	});
+}
+
+async function initCaptcha() {
+	const lang = (navigator.language.split("-")[0] || "en").toLowerCase();
 
 	try {
-		const response = await fetch(
-			`https://weiss.bet/api/v3/auth/register/partners?captcha-response=${captchaResponse}`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data),
-			}
-		);
+		// Припустимо, getApiConfiguration повертає об'єкт з полем siteKey
+		const config = await getApiConfiguration();
+		const siteKey = config?.siteKey;
+		if (!siteKey) throw new Error("Sitekey not found");
 
-		const responseData = await response.json();
-
-		if ("playerToken" in responseData) {
-			clearForm();
-			if (window.grecaptcha) grecaptcha.reset(); // скидання капчі
-			window.location.href = `https://weiss.bet/api/v3/auth/partners-player-entry?playerToken=${responseData.playerToken}&deeplink=%2F`;
-		} else if ("errors" in responseData) {
-			console.error("Помилки при реєстрації:", responseData.errors);
-			notyf.error(
-				responseData.errors?.[0]?.message ||
-					"Registration error. Please try again."
-			);
-		} else {
-			throw new Error("Unknown response from the server.");
-		}
+		await loadRecaptchaScript(lang);
+		renderCaptcha(siteKey);
 	} catch (error) {
-		console.error("❌ Помилка при запиті:", error);
-		notyf.error("Something went wrong! Try again.");
+		console.error("Captcha init error:", error);
+		// Тут можна показати повідомлення користувачу через Notyf або інше
 	}
 }
 
-window.onCaptchaCompleted = function () {
-	validateForm();
-};
+async function submitForm(e) {
+	e.preventDefault();
+	if (refs.submitBtn.disabled) return;
+
+	const email = refs.email.value.trim();
+	const password = refs.password.value.trim();
+	const captcha = document
+		.querySelector("textarea[name='g-recaptcha-response']")
+		?.value.trim();
+
+	if (!email || !password || !captcha) {
+		notyf.error("Будь ласка, заповніть усі поля і пройдіть капчу.");
+		return;
+	}
+
+	try {
+		const token = await sendRegistration({ email, password, captcha });
+		redirectToAuth(token);
+	} catch (errors) {
+		if (Array.isArray(errors)) {
+			notyf.error(errors?.[0] || "Помилка реєстрації.");
+		} else {
+			notyf.error("Щось пішло не так.");
+		}
+	}
+}
+
+function setupEvents() {
+	refs.openBtns.forEach((btn) => btn.addEventListener("click", openModal));
+	refs.closeBtn.addEventListener("click", closeModal);
+	document.addEventListener("keydown", handleEscClose);
+	document.addEventListener("click", handleEscClose);
+	refs.email.addEventListener("input", validateForm);
+	refs.password.addEventListener("input", validateForm);
+	refs.checkbox.addEventListener("change", validateForm);
+	refs.form.addEventListener("touchstart", onTouchStart);
+	refs.form.addEventListener("touchmove", onTouchMove);
+	refs.form.addEventListener("submit", submitForm);
+	window.addEventListener(
+		"popstate",
+		() => !refs.backdrop.classList.contains("is-hidden") && closeModal()
+	);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+	notyf = new Notyf({ duration: 2000, position: { x: "center", y: "top" } });
+	setupEvents();
+	initCaptcha();
+});
